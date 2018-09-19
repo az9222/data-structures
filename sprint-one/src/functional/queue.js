@@ -8,13 +8,16 @@ var Queue = function() {
 
   someInstance.enqueue = function(value) {
     count++;
+    storage[count] = value;
   };
 
   someInstance.dequeue = function() {
     count--;
     if (count < 0) {
-      return count;
+      count = 0;
     }
+    var arr = Object.values(storage);
+    return arr.length-1;
   };
 
   someInstance.size = function() {

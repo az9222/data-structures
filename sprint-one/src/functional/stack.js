@@ -17,8 +17,8 @@ var Stack = function() {
       count = 0;;
     }
 
-    var arr = Object.values(storage);
-    return arr[arr.length-1];
+      var arr = Object.values(storage);
+      return arr[arr.length-1]
   };
 
   someInstance.size = function() {
@@ -28,13 +28,7 @@ var Stack = function() {
   return someInstance;
 };
 
-// describe('stack-specific behavior', function() {
-//   it('removes the most recently added of two items', function() {
-//     stack.push('a');
-//     stack.push('b');
-//     expect(stack.pop()).to.equal('b');
-//   });
-//   it('removes the newest item, after newer items have already been added and removed', function() {
+//already been added and removed', function() {
 //     stack.push('a');
 //     stack.push('b');
 //     stack.push('c');
