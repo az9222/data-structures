@@ -8,7 +8,7 @@ var Stack = function() {
   // Implement the methods below
   someInstance.push = function(value) {
     count++;
-    storage[count] = value; //{1: 'one', 2: 'two', 3: 'three'}
+    storage[count] = value; //{1: 'a', 2: 'b', 3: 'c'}
   };
 
   someInstance.pop = function() {
@@ -17,7 +17,7 @@ var Stack = function() {
       count = 0;;
     }
 
-    var arr = Object.values(storage);
+    var arr = Object.values(storage); //['a', 'b', 'c']
     return arr[count];
   };
 
