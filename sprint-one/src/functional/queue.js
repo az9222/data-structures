@@ -7,9 +7,14 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
+    count++;
   };
 
   someInstance.dequeue = function() {
+    count--;
+    if (count < 0) {
+      return count;
+    }
   };
 
   someInstance.size = function() {
