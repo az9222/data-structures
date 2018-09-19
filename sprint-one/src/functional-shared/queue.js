@@ -38,3 +38,9 @@ var queueMethods = {
     return this.enqueueCount - this.dequeueCount;
   }
 };
+
+// queue.enqueue('a');
+// queue.enqueue('b');
+// queue.dequeue();
+// queue.enqueue('c');
+// expect(queue.dequeue()).to.equal('b');
