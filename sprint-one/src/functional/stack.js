@@ -4,11 +4,11 @@ var Stack = function() {
   // Use an object with numeric keys to store values
   var storage = {};
   var count = 0;
-  var arr = Object.values(storage);
 
   // Implement the methods below
   someInstance.push = function(value) {
     count++;
+    storage[count] = value; //{1: 'one', 2: 'two', 3: 'three'}
   };
 
   someInstance.pop = function() {
@@ -16,6 +16,8 @@ var Stack = function() {
     if (count < 0) {
       count = 0;;
     }
+
+    var arr = Object.values(storage);
     return arr[arr.length-1];
   };
 
@@ -25,13 +27,6 @@ var Stack = function() {
 
   return someInstance;
 };
-
-// it('allows sequentially additing and removing items', function() {
-//   stack.push('a');
-//   expect(stack.pop()).to.equal('a');
-//   stack.push('b');
-//   expect(stack.pop()).to.equal('b');
-// });
 
 // describe('stack-specific behavior', function() {
 //   it('removes the most recently added of two items', function() {
