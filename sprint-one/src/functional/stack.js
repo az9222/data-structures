@@ -8,6 +8,7 @@ var Stack = function() {
   // Implement the methods below
   someInstance.push = function(value) {
     count++;
+    return value;
   };
 
   someInstance.pop = function() {
@@ -23,3 +24,10 @@ var Stack = function() {
 
   return someInstance;
 };
+
+// it('allows sequentially additing and removing items', function() {
+//   stack.push('a');
+//   expect(stack.pop()).to.equal('a');
+//   stack.push('b');
+//   expect(stack.pop()).to.equal('b');
+// });
