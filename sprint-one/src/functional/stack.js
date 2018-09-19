@@ -17,8 +17,8 @@ var Stack = function() {
       count = 0;;
     }
 
-      var arr = Object.values(storage);
-      return arr[arr.length-1]
+    var arr = Object.values(storage);
+    return arr[count];
   };
 
   someInstance.size = function() {

@@ -9,6 +9,8 @@ var Queue = function() {
   someInstance.enqueue = function(value) {
     count++;
     storage[count] = value;
+    var arr = Object.values(storage);
+    return arr[count];
   };
 
   someInstance.dequeue = function() {
@@ -17,7 +19,7 @@ var Queue = function() {
       count = 0;
     }
     var arr = Object.values(storage);
-    return arr.length-1;
+    return arr[count];
   };
 
   someInstance.size = function() {
@@ -26,3 +28,19 @@ var Queue = function() {
 
   return someInstance;
 };
+
+// describe('queue-specific behavior', function() {
+//   it('removes the least recently added of two items', function() {
+//     queue.enqueue('a');
+//     queue.enqueue('b');
+//     expect(queue.dequeue()).to.equal('a');
+//   });
+
+//   it('removes the oldest item, after newer items have already been added and removed', function() {
+//     queue.enqueue('a');
+//     queue.enqueue('b');
+//     queue.dequeue();
+//     queue.enqueue('c');
+//     expect(queue.dequeue()).to.equal('b');
+//   });
+// });
