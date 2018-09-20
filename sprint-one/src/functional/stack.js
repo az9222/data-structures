@@ -7,8 +7,8 @@ var Stack = function() {
 
   // Implement the methods below
   someInstance.push = function(value) {
+    storage[count] = value; //{0: 'a', 1: 'b', 2: 'c'}
     count++;
-    storage[count] = value; //{1: 'a', 2: 'b', 3: 'c'}
   };
 
   someInstance.pop = function() {
@@ -16,9 +16,9 @@ var Stack = function() {
     if (count < 0) {
       count = 0;;
     }
-
-    var arr = Object.values(storage); //['a', 'b', 'c']
-    return arr[count];
+    var returnValue = storage[count];
+    delete storage[count];
+    return returnValue;
   };
 
   someInstance.size = function() {
@@ -36,3 +36,8 @@ var Stack = function() {
 //     expect(stack.pop()).to.equal('b');
 //   });
 // });
+
+// stack.push('a');
+//         expect(stack.pop()).to.equal('a');
+//         stack.push('b');
+//         expect(stack.pop()).to.equal('b');

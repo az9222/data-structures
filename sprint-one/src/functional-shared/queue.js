@@ -15,20 +15,18 @@ var extend = function(obj, methods) {
 
 var queueMethods = {
   enqueue: function(value){
-    this.enqueueCount++;
     this.storage[this.enqueueCount] = value;
-    let arr = Object.values(this.storage);
-    return arr[this.enqueueCount];
+    this.enqueueCount++;
   },
 
   dequeue: function() {
      if (this.enqueueCount < 0) {
       count = 0;
     }
-    var arr = Object.values(this.storage);
-    var returnValue = arr[this.dequeueCount];
+    var result = this.storage[this.dequeueCount];
+    delete this.storage[this.dequeueCount];
     this.dequeueCount++;
-    return returnValue
+    return result;
   },
 
   size: function(){

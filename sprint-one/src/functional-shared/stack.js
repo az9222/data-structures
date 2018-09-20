@@ -14,8 +14,8 @@ var extend = function(obj, methods) {
 
 var stackMethods = {
   push: function(value) {
-    this.count++;
     this.storage[this.count] = value;
+    this.count++; 
   },
 
   pop: function() {
@@ -23,8 +23,9 @@ var stackMethods = {
     if (this.count < 0) {
       this.count = 0;
     }
-    var arr = Object.values(this.storage);
-    return arr[this.count];
+    var returnedValue = this.storage[this.count];
+    delete this.storage[this.count];
+    return returnedValue;
   },
 
   size: function() {

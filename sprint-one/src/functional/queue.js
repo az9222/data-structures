@@ -8,20 +8,18 @@ var Queue = function() {
   // Implement the methods below
 
   someInstance.enqueue = function(value) {
-    count++;
     storage[count] = value;
-    var arr = Object.values(storage);
-    return arr[count];
+    count++;
   };
 
   someInstance.dequeue = function() {
     if (count < 0) {
       count = 0;
     }
-    var arr = Object.values(storage);
-    var returnValue = arr[removalCount];
+    var returnedValue = storage[removalCount];
+    delete storage[removalCount]
     removalCount++;
-    return returnValue
+    return returnedValue;
   };
 
   someInstance.size = function() {
