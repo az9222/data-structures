@@ -6,21 +6,26 @@ var Queue = function() {
   return obj;
 };
 
-var queueMethods = {
-  enqueue: function(value) {
-    this.count++;
+var queueMethods = {}; //or prototype, which is a built in function
+
+queueMethods.enqueue = function(value) {
     this.storage[this.count] = value;
-    let arr = Object.values(this.storage);
-    return arr[this.count];
-  },
+    this.count++;
+},
 
-  dequeue: function() {
+queueMethods.dequeue = function() {
+    var value = this.storage[this.removeCount];
+    delete this.storage[this.removeCount];
+    this.removeCount++;
+    return value;
+},
 
-  },
+queueMethods.size = function() {
+    if (this.removeCount > this.count) {
+      return 0;
+    }
+    return this.count-this.removeCount;
+}
 
-  size: function(){
-
-  }
-};
 
 
