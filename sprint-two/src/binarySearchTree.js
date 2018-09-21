@@ -26,26 +26,30 @@ class BinarySearchTree {
 
         //while there is a root
         while (this.root) {
-        //if value < root
-        if (value < this.root.value) {
-            //if the root has no left
-            if (this.root.left === null) {
-                //the newNode becomes the new left
-                this.root.left = inputNode;
-                return this;
+            //if there are duplicates return und
+            if (value === this.root.value) {
+                return undefined;
             }
-            //if the root has a left, the root becomes the
-            this.root = this.root.left;
-            } else if (value > this.root.value) {
-               if (this.root.right === null) {
-                   this.root.right = inputNode;
-                   return this;
-               }
-               this.root = this.root.right;
+            //if value < root
+            if (value < this.root.value) { //<-this.root.value???
+                //if the root has no left
+                if (this.root.left === null) {
+                    //the newNode becomes the new left
+                    this.root.left = inputNode;
+                    return this;
+                }
+                //if the root has a left, the root becomes the
+                this.root = this.root.left;
+                } else if (value > this.root.value) {
+                    if (this.root.right === null) {
+                        this.root.right = inputNode;
+                        return this;
+                    }
+                    this.root = this.root.right;
+                }
             }
         }
-    }
-    
+        
     //contains
 };
 
