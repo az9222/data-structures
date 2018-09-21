@@ -6,7 +6,13 @@ var HashTable = function() {
 };
 
 HashTable.prototype.insert = function(k, v) {
-  var index = getIndexBelowMaxForKey(k, this._limit);
+  var index = getIndexBelowMaxForKey(k, this._limit); //position 4
+  //if the bucket has nothing at the hashed index
+  if (!this._storage[index]) {
+    this._storage[index] = [];
+  }
+  //push k, v in an array at the index
+  this._storage[index].push([k,v]);
 };
 
 HashTable.prototype.retrieve = function(k) {
