@@ -4,31 +4,45 @@ var LinkedList = function() {
   list.tail = null;
   list.length = 0;
 
-  var counter = 0;
-  list[counter]; //keeps track of length
-
   list.addToTail = function(value) {
-    this.tail = new Node(value);
-    // counter++; //increments length as we push
+    //create a new node
+    var newNode = new Node(value);
+      //if there is no head then point the head to the node
+    if (!this.head) {
+      this.head = newNode;
+    } 
+    //if we have a tail, the next property points to the newNode
+    if(this.tail) {
+      this.tail.next = newNode
+    }
+    //the tail now becomes the noewNode
+    this.tail = newNode;
+    //increment length
     this.length++;
-    return this;
   };
 
   list.removeHead = function() {
     var currenthead = this.head;
     this.head = this.head.next;
     this.length--;
-    return currenthead;
-    
-    //maybe: if there are no nodes return und
-    //store current head property in variable
-    //set head property to be current heads next property
-    //decrement length by 1
-    //return removed ndoe
+    return currenthead.value;
   };
 
   list.contains = function(target) {
-
+    //set a current variable to be the head
+    var current = this.head;
+    //while there is a current variable
+    while (current) {
+      //check if the current value is target
+      if (current.value === target) {
+        //return true
+        return true;
+      }
+      //current then becomes current.next
+      current = current.next;
+    }
+    //return false if it was not found
+    return false;
   };
 
   return list;
