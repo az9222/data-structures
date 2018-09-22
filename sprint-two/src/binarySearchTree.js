@@ -10,20 +10,17 @@ class BinarySearchTree {
 
     insert(value) {
         var inputNode = new BinarySearchTree(value);
-        //keep track of the value of the root node
-        //while there is a node
         //if there are duplicates return und
         if (value === this.value) {
             return undefined;
         } else if (value < this.value) { 
-            //if value < root
             //if the root has no left
             if (this.left === null) {
                 //the newNode becomes the new left
                 this.left = inputNode;
                 return this;
             } else {
-                //if the root has a left, the root becomes the
+                //if the root has a left, the inputu becomes a left
                 this.left.insert(value)
             }
         } else if (value > this.value) {

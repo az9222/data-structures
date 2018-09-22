@@ -7,21 +7,18 @@ var Set = function() {
 var setPrototype = {};
 
 setPrototype.add = function(item) {
-  //loop through set properties
-  for (var key in this.set) {
-    //if the set does not contain the item, add the item
-    if (this.set.key === undefined) {
-      this.set[key] = item;
-    }
+  //if the set does not contain the item, add it
+  if (!this.contains(item)) {
+    this._storage[item] = item;
   }
-  //return the set
-  return set;
 };
 
 setPrototype.contains = function(item) {
+  return this._storage.hasOwnProperty(item);
 };
 
 setPrototype.remove = function(item) {
+  delete this._storage[item];
 };
 
 /*
