@@ -19,17 +19,23 @@ Graph.prototype.contains = function(node) {
 
 // Removes a node from the graph.
 Graph.prototype.removeNode = function(node) {
-    //delete this.adjacencyList[node] which is the node we want to delete
+    //while there the array of the node we want to delete has elements
+    while (this.adjacencyList[node].length > 0) { 
+        //pop element and save the popped element in const variable
+        const popped = this.adjacencyList[node].pop();
+        //call removeEdge on the popped element and the node
+        this.removeEdge(popped,node);
+    }
+    //delete the node 
     delete this.adjacencyList[node];
-    //call removeEdge
-    this.removeEdge(node);
 };
 
 // Returns a boolean indicating whether two specified nodes are connected.  Pass in the values contained in each of the two nodes.
 Graph.prototype.hasEdge = function(fromNode, toNode) {
-    if (this.adjacencyList[fromNode].includes(toNode) && 
-    this.adjacencyList[toNode].includes(fromNode)) {
-        return true
+    console.log(true)
+    if (this.adjacencyList[fromNode].includes(toNode)) {
+        console.log(true)
+        return true;
     } else {
         return false;
     }
@@ -37,6 +43,7 @@ Graph.prototype.hasEdge = function(fromNode, toNode) {
 
 // Connects two nodes in a graph by adding an edge between them.
 Graph.prototype.addEdge = function(fromNode, toNode) {
+    console.log(fromNode, toNode)
     this.adjacencyList[fromNode].push(toNode);
     this.adjacencyList[toNode].push(fromNode);
 };
@@ -49,7 +56,19 @@ Graph.prototype.removeEdge = function(fromNode, toNode) {
 
 // Pass in a callback which will be executed on each node of the graph.
 Graph.prototype.forEachNode = function(cb) {
+    //loop through the object
+    for (var prop in this.adjacencyList) {
+        //apply the callback to each prop
+        console.log(prop)
+        cb(prop);
+    }
 };
+
+/*
+{ 1: [2]
+  2: [1]
+}
+*/
 
 /*
  * Complexity: What is the time complexity of the above functions?

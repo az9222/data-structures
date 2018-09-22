@@ -34,8 +34,26 @@ class BinarySearchTree {
     }
 
     contains(value) {
-        if ()
-    }
+    if (value < this.value) { 
+        //if the root has no left
+        if (this.left === null) {
+            //the newNode becomes the new left
+            this.left = inputNode;
+            return this;
+        } else {
+            //if the root has a left, the inputu becomes a left
+            this.left.insert(value)
+        }
+    } else if (value > this.value) {
+        if (this.right === null) {
+            this.right = inputNode;
+            return this;
+        } else {
+            this.right.insert(value)
+        }
+    }     
+}
+
     
     depthFirstLog() {
 
