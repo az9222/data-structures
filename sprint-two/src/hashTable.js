@@ -11,12 +11,14 @@ HashTable.prototype.insert = function(k, v) {
     this._storage[index] = [];
   }
   //push k, v in an array at the index
+  // this._storage[index].push([k,v]);
   this._storage[index].push([k,v]);
   //overwrite duplicate keys
   for (var i = 0; i < this._storage[index].length; i++) {
     if (this._storage[index][i][0] === k) {
-      return this._storage[index][i][1];
+      this._storage[index][i][1] = v;
     }
+  }
 };
 
 HashTable.prototype.retrieve = function(k) {
@@ -38,6 +40,12 @@ HashTable.prototype.retrieve = function(k) {
 
 HashTable.prototype.remove = function(k) {
   var index = getIndexBelowMaxForKey(k, this._limit);
+  //loop through and if tuple matches key
+  for (var i = 0; i < this._storage[index].length; i++) {
+    if (this._storage[index][i][0] === k) {
+      return this._storage[index].splice(this._storage[index][i],1);
+    }
+  }
 };
 
 
