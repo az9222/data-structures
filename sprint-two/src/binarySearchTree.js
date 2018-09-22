@@ -33,8 +33,8 @@ class BinarySearchTree {
         }     
     }
 
-    contains() {
-
+    contains(value) {
+        if ()
     }
     
     depthFirstLog() {
