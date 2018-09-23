@@ -34,35 +34,34 @@ class BinarySearchTree {
     }
 
     contains(value) {
-        // if there is no root node, return false
-        // save the current node into a variable CURRENT
-        var currentNode = this.value;
-        if (currentNode.value === value) {
-            return true;
-        }
-        while (currentNode && currentNode.value !== value) {
-            if (value < currentNode.value) {
-                this.left = currentNode;
-            } else if ( value > currentNode.value) {
-                this.right = currentNode;
-            } else {
+        //set variable to root
+        let currentNode = this;
+        while (currentNode) {
+            if (currentNode.value === value) {
                 return true;
+            } else if (value < currentNode.value) {
+                currentNode = currentNode.left;
+            } else if ( value > currentNode.value) {
+                currentNode = currentNode.right; 
             } 
         }
         return false;
     }
     
-    // depthFirstLog() {
-    //     //set currentNode to this.node
-    //     var currentNode = this.value;
-    //     //while a currentNode exists
-    //     while (currentNode) {
-    //         //if value is less than currentnode value, apply the callback
-    //         if (currentNode.value < )
-    //         //if value is more than current node value, apply the callback
-    //     }
-    // }
-};
+    depthFirstLog(cb) {
+        //start at root which i will set this equal to currentNode and apply cb
+        cb(this.value);
+        //apply the cb currentNode.left
+        if (this.left) {
+            //apply depthFirstLog since the left is still a BST
+            this.left.depthFirstLog(cb)
+        }
+        //app the cb to currentNode.right
+        if (this.right) {
+            this.right.depthFirstLog(cb);
+        }
+    }
+}
 
 /*
  * Complexity: What is the time complexity of the above functions?
