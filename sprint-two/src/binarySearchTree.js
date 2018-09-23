@@ -34,30 +34,34 @@ class BinarySearchTree {
     }
 
     contains(value) {
-    if (value < this.value) { 
-        //if the root has no left
-        if (this.left === null) {
-            //the newNode becomes the new left
-            this.left = inputNode;
-            return this;
-        } else {
-            //if the root has a left, the inputu becomes a left
-            this.left.insert(value)
+        // if there is no root node, return false
+        // save the current node into a variable CURRENT
+        var currentNode = this.value;
+        if (currentNode.value === value) {
+            return true;
         }
-    } else if (value > this.value) {
-        if (this.right === null) {
-            this.right = inputNode;
-            return this;
-        } else {
-            this.right.insert(value)
+        while (currentNode && currentNode.value !== value) {
+            if (value < currentNode.value) {
+                this.left = currentNode;
+            } else if ( value > currentNode.value) {
+                this.right = currentNode;
+            } else {
+                return true;
+            } 
         }
-    }     
-}
-
-    
-    depthFirstLog() {
-
+        return false;
     }
+    
+    // depthFirstLog() {
+    //     //set currentNode to this.node
+    //     var currentNode = this.value;
+    //     //while a currentNode exists
+    //     while (currentNode) {
+    //         //if value is less than currentnode value, apply the callback
+    //         if (currentNode.value < )
+    //         //if value is more than current node value, apply the callback
+    //     }
+    // }
 };
 
 /*
