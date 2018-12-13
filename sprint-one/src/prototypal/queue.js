@@ -1,31 +1,33 @@
 var Queue = function() {
-  var obj = Object.create(queueMethods);
-  obj.storage = {};
-  obj.count = 0;
-  obj.removeCount = 0;
-  return obj;
-};
+  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
+  // but try not not reference your old code in writing the new style.
 
-var queueMethods = {}; //or prototype, which is a built in function
+  var someInstance = Object.create(queueMethods);
+
+  someInstance._storage = {};
+  someInstance._start = 0;
+  someInstance._end = 0;
+
+  return someInstance;
+  };
+
+var queueMethods = {};
+
 
 queueMethods.enqueue = function(value) {
-    this.storage[this.count] = value;
-    this.count++;
-},
+  this._storage[this._end++] = value;
+};
 
 queueMethods.dequeue = function() {
-    var value = this.storage[this.removeCount];
-    delete this.storage[this.removeCount];
-    this.removeCount++;
-    return value;
-},
+  // This does some unnecessary work sometimes. Can you spot why?
+  var result = this._storage[this._start];
+  delete this._storage[this._start];
+
+  this.size() && this._start++;
+
+  return result;
+};
 
 queueMethods.size = function() {
-    if (this.removeCount > this.count) {
-      return 0;
-    }
-    return this.count-this.removeCount;
-}
-
-
-
+  return this._end - this._start;
+};

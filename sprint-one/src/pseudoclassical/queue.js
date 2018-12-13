@@ -1,29 +1,27 @@
 var Queue = function() {
-  this.obj = {};
-  this.storage = {};
-  this.count = 0;
-  this.removeCount = 0;
-};
+  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
+  // but try not not reference your old code in writing the new style.
+
+  this._storage = {};
+  this._start = 0;
+  this._end = 0;
+  };
+
 
 Queue.prototype.enqueue = function(value) {
-  this.storage[this.count] = value;
-  this.count++;
+  this._storage[this._end++] = value;
 };
 
 Queue.prototype.dequeue = function() {
-  var returnedValue = this.storage[this.removeCount];
-  delete this.storage[this.removeCount];
-  this.removeCount++;
-  return returnedValue;
+  // This does some unnecessary work sometimes. Can you spot why?
+  var result = this._storage[this._start];
+  delete this._storage[this._start];
+
+  this.size() && this._start++;
+
+  return result;
 };
 
 Queue.prototype.size = function() {
-  if (this.removeCount > this.count) {
-    return 0;
-  }
-  return this.count - this.removeCount;
+  return this._end - this._start;
 };
-
-
-
-

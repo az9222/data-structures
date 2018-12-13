@@ -1,44 +1,34 @@
 var Queue = function() {
-  var obj = {};
-  obj.storage = {};
-  obj.enqueueCount = 0;
-  obj.dequeueCount = 0;
-  extend(obj, queueMethods);
-  return obj;
-}
+  // Hey! Rewrite in the new style. Your code will wind up looking very similar,
+  // but try not not reference your old code in writing the new style.
 
-var extend = function(obj, methods) {
-  for (var key in methods) {
-    obj[key] = methods[key];
-  }
-}
+  var someInstance = {};
+  _(someInstance).extend(queueMethods);
 
-var queueMethods = {
-  enqueue: function(value){
-    this.storage[this.enqueueCount] = value;
-    this.enqueueCount++;
-  },
+  someInstance._storage = {};
+  someInstance._start = 0;
+  someInstance._end = 0;
 
-  dequeue: function() {
-     if (this.enqueueCount < 0) {
-      count = 0;
-    }
-    var result = this.storage[this.dequeueCount];
-    delete this.storage[this.dequeueCount];
-    this.dequeueCount++;
-    return result;
-  },
+  return someInstance;
+  };
 
-  size: function(){
-    if (this.dequeueCount > this.enqueueCount) {
-      return 0;
-    }
-    return this.enqueueCount - this.dequeueCount;
-  }
+var queueMethods = {};
+
+
+queueMethods.enqueue = function(value) {
+  this._storage[this._end++] = value;
 };
 
-// queue.enqueue('a');
-// queue.enqueue('b');
-// queue.dequeue();
-// queue.enqueue('c');
-// expect(queue.dequeue()).to.equal('b');
+queueMethods.dequeue = function() {
+  // This does some unnecessary work sometimes. Can you spot why?
+  var result = this._storage[this._start];
+  delete this._storage[this._start];
+
+  this.size() && this._start++;
+
+  return result;
+};
+
+queueMethods.size = function() {
+  return this._end - this._start;
+};
